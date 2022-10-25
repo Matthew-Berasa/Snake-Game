@@ -17,22 +17,6 @@ c:\users\matth\source\repos\project1\snake\menu.cpp(41): warning C4244: 'argumen
           [
               T=float
           ]
-c:\users\matth\source\repos\project1\snake\menu.cpp(82): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-          and
-          [
-              T=int
-          ]
-c:\users\matth\source\repos\project1\snake\menu.cpp(82): warning C4244: 'argument': conversion from 'const T' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-          and
-          [
-              T=int
-          ]
+  main.cpp
+  Generating Code...
   Project1.vcxproj -> C:\Users\matth\source\repos\Project1\Snake\Debug\Snake.exe

@@ -78,10 +78,5 @@ void Menu::DrawMenu(RenderWindow &target) {
 	target.display();
 }
 
-bool Menu::isRectangleClicked(RectangleShape &Button) {
-	sf::IntRect rect(Button.getPosition().x, Button.getPosition().y, Button.getGlobalBounds().width, Button.getGlobalBounds().height);
-	if (rect.contains(Mouse::getPosition()))
-		return true;
-	return false;
-}
+
 
