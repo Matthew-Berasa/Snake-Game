@@ -10,7 +10,7 @@ using namespace std;
 
 
 Menu::Menu() {
-	RenderWindow menu(VideoMode(1700, 1700), "Snake!");
+	RenderWindow menu(VideoMode(),"Snake!", Style::Fullscreen);
 	menu.setFramerateLimit(60);
 	buttonSinglePlayer.setSize(Vector2f(385.f, 200.f));
 	buttonSinglePlayer.setFillColor(Color::Transparent);
@@ -68,12 +68,12 @@ void Menu::textMenu(RenderWindow &target, string title, int sizeFont, float posi
 
 void Menu::DrawMenu(RenderWindow &target) {
 	target.clear(Color::Black);
-	textMenu(target, "SNAKE", 250, target.getSize().x / 3.5f, 0);
-	textMenu(target, "SINGLE", 125, target.getSize().x / 2.5f, target.getSize().y / 1.5f);
-	buttonSinglePlayer.setPosition(target.getSize().x / 2.5f, target.getSize().y / 1.5f);
+	textMenu(target, "SNAKE", 250, target.getSize().x / 2.5f, 0);
+	textMenu(target, "SINGLE", 125, target.getSize().x / 2.25f, target.getSize().y / 1.5f);
+	buttonSinglePlayer.setPosition(target.getSize().x / 2.25f, target.getSize().y / 1.5f);
 	target.draw(buttonSinglePlayer);
-	textMenu(target, "MULTIPLAYER", 125, target.getSize().x / 3.5f, target.getSize().y / 1.25f);
-	buttonMultiPlayer.setPosition(target.getSize().x / 3.5f, target.getSize().y / 1.25f);
+	textMenu(target, "MULTIPLAYER", 125, target.getSize().x / 2.55f, target.getSize().y / 1.25f);
+	buttonMultiPlayer.setPosition(target.getSize().x / 2.55f, target.getSize().y / 1.25f);
 	target.draw(buttonMultiPlayer);
 	target.display();
 }

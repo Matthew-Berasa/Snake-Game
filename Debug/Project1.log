@@ -35,6 +35,4 @@ c:\users\matth\source\repos\project1\snake\menu.cpp(82): warning C4244: 'argumen
           [
               T=int
           ]
-  main.cpp
-  Generating Code...
   Project1.vcxproj -> C:\Users\matth\source\repos\Project1\Snake\Debug\Snake.exe
