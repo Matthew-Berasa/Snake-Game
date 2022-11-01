@@ -10,42 +10,36 @@ using namespace std;
 
 
 Menu::Menu() {
-	RenderWindow menu(VideoMode(),"Snake!", Style::Fullscreen);
-	menu.setFramerateLimit(60);
+	RenderWindow menuWindow(VideoMode(),"Snake!", Style::Fullscreen);
+	menuWindow.setFramerateLimit(60);
 	buttonSinglePlayer.setSize(Vector2f(385.f, 200.f));
 	buttonSinglePlayer.setFillColor(Color::Transparent);
 	buttonMultiPlayer.setSize(Vector2f(750.f, 175.f));
 	buttonMultiPlayer.setFillColor(Color::Transparent);
-	Continue(menu);
+	Continue(menuWindow);
 }
 
 void Menu::Continue(RenderWindow &target) {
 	while (target.isOpen()) {
-		Event event;
-		while (target.pollEvent(event)) {
-			if (event.type == Event::Closed)
+		Event eventMenu;
+		while (target.pollEvent(eventMenu)) {
+			if (eventMenu.type == Event::Closed) {
 				target.close();
-			else if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape)
+				openGameWindow = false;
+			}
+			else if (eventMenu.type == Event::KeyPressed && eventMenu.key.code == Keyboard::Escape) {
 				target.close();
-			else if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
+				openGameWindow = false;
+			}
+			else if (eventMenu.type == Event::MouseButtonPressed && eventMenu.mouseButton.button == Mouse::Left) {
 				
 				if (buttonSinglePlayer.getGlobalBounds().contains(Mouse::getPosition(target).x, Mouse::getPosition(target).y)){
 					target.close();
-					RenderWindow gameSinglePlayer(VideoMode(1700, 1700), "Snake Single Player");
-					while (gameSinglePlayer.isOpen())
-					{
-						gameSinglePlayer.clear();
-						gameSinglePlayer.display();
-					}
+					singlePlayer = true;
 				}
 				else if (buttonMultiPlayer.getGlobalBounds().contains(Mouse::getPosition(target).x, Mouse::getPosition(target).y)) {
 					target.close();
-					RenderWindow gameMultiPlayer(VideoMode(1700, 1700), "Snake Multiplayer");
-					while (gameMultiPlayer.isOpen())
-					{
-						gameMultiPlayer.clear();
-						gameMultiPlayer.display();
-					}
+					singlePlayer = false;
 				}
 			}
 		}
@@ -53,7 +47,7 @@ void Menu::Continue(RenderWindow &target) {
 	}
 }
 
-void Menu::textMenu(RenderWindow &target, string title, int sizeFont, float positionFontx, float positionFonty) {
+void Menu::drawTextMenu(RenderWindow &target, string title, int sizeFont, float positionFontx, float positionFonty) {
 	Font menuFont;
 	menuFont.loadFromFile("Fonts/FontsFree-Net-GamePlayDemoRegular.ttf");
 
@@ -68,15 +62,16 @@ void Menu::textMenu(RenderWindow &target, string title, int sizeFont, float posi
 
 void Menu::DrawMenu(RenderWindow &target) {
 	target.clear(Color::Black);
-	textMenu(target, "SNAKE", 250, target.getSize().x / 2.5f, 0);
-	textMenu(target, "SINGLE", 125, target.getSize().x / 2.25f, target.getSize().y / 1.5f);
+	drawTextMenu(target, "SNAKE", 250, target.getSize().x / 2.5f, 0);
+	drawTextMenu(target, "SINGLE", 125, target.getSize().x / 2.25f, target.getSize().y / 1.5f);
 	buttonSinglePlayer.setPosition(target.getSize().x / 2.25f, target.getSize().y / 1.5f);
 	target.draw(buttonSinglePlayer);
-	textMenu(target, "MULTIPLAYER", 125, target.getSize().x / 2.55f, target.getSize().y / 1.25f);
+	drawTextMenu(target, "MULTIPLAYER", 125, target.getSize().x / 2.55f, target.getSize().y / 1.25f);
 	buttonMultiPlayer.setPosition(target.getSize().x / 2.55f, target.getSize().y / 1.25f);
 	target.draw(buttonMultiPlayer);
 	target.display();
 }
+
 
 
 
